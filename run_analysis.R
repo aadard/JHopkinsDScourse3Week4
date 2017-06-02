@@ -116,14 +116,14 @@ names(trainSet)     <- features$features
 names(completeSet)  <- features$features
 
 # add activity and subject labels to to test and training set
-testSet$activityLabel  <- testLabels
-testSet$subjectLabel   <- testSubject
-trainSet$activityLabel <- trainLabels
-trainSet$subjectLabel  <- trainSubject
+testSet$activityLabel  <- as.numeric(testLabels$activitylabel)
+testSet$subjectLabel   <- as.numeric(testSubject$subject)
+trainSet$activityLabel <- as.numeric(trainLabels$activitylabel)
+trainSet$subjectLabel  <- as.numeric(trainSubject$subject)
 
 # add activity and subject label to complete data set
-completeSet$activitylabel <- rbind(trainLabels,testLabels)
-completeSet$subject       <- rbind(trainSubject,testSubject)
+completeSet$activitylabel <- as.numeric(rbind(trainLabels,testLabels)$activitylabel)
+completeSet$subject       <- as.numeric(rbind(trainSubject,testSubject)$subject)
 
 
 
@@ -140,7 +140,6 @@ completeSet$activity <- activities$V2[unlist(completeSet$activitylabel)]
 
 # EXRACT ONLY MEASUREMENTS ON MEAN AND STANDARD DEV --------------
 
-
 # find columns with measurements on mean
 meanVariables <- grep("mean",names(completeSet))
 
@@ -153,41 +152,38 @@ meanData <- completeSet[,meanVariables]
 # measurements on standard deviation
 stdData <- completeSet[,stdVariables]
 
+# combine data
+meanStdData <- cbind(meanData,stdData)
 
-# AVERAGE FOR EACH ACTIVITY -----------
+# AVERAGE FOR EACH ACTIVITY AND SUBJECT -----------
 
-# first split the data (only for variables hence 1:nrow(features))
-activitySet <- split(completeSet[,1:nrow(features)],completeSet$activity)
-
-# for each data frame within the list: calculate mean of variables
-activityMean <- lapply(activitySet, function (x) lapply(x, mean, na.rm=TRUE))
-
-
-
-# AVERAGE FOR EACH SUBJECT -----------
-
-# first split the data (only for variables hence 1:nrow(features))
-subjectSet <- split(completeSet[,1:nrow(features)],completeSet$subject)
+# split data on mean an standard deviation
+splitData <- split(meanStdData,list(completeSet$subject,completeSet$activitylabel))
 
 # for each data frame within the list: calculate mean of variables
-subjectMean <- lapply(subjectSet, function (x) lapply(x, mean, na.rm=TRUE))
+splitDataMean <- lapply(splitData, function (x) lapply(x, mean, na.rm=TRUE))
+
+# for loop to extract data from list and to create tidy data frame
+count = 1;
+tidyDataDF <- data.frame(matrix(data=NA,nrow=180,ncol=length(meanStdData)+2))
+for(i in 1:30){
+          for(j in 1:6){
+                    tidyDataDF[count,1] <- i
+                    tidyDataDF[count,2] <- j
+                    tidyDataDF[count,3:(ncol(meanStdData)+2)] <- unlist(splitDataMean[count])
+                    
+                    count <- count + 1
+          }
+}
+
+# change names for tidy data set
+names(tidyDataDF)[c(1,2)] <- c("subject","activity")
+names(tidyDataDF)[3:ncol(tidyDataDF)] <- names(meanStdData) 
 
 
 # WRITE OUT TIDY DATA SET IN A SINGLE FILE ---------------
-# to write out the data set in a single file 
 
-datTemp1 <- as.data.frame(activityMean)
-datTemp2 <- as.data.frame(subjectMean)
-names(datTemp2) <- gsub("^X","subject",names(datTemp2))
+write.table(tidyDataDF,"./tidyDataSetMean.txt",row.names = FALSE)
 
-# bind temporary data frames by column and print
-tidyDataMean <- cbind(datTemp1,datTemp2)
-
-# remove datTemp1 and datTemp2
-rm(datTemp1)
-rm(datTemp2)
-
-# write out tiday data set
-write.table(tidyDataMean,"./tidyDataSetMean.txt",row.names = FALSE)
 
 
