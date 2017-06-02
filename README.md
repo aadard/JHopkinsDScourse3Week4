@@ -1,11 +1,11 @@
 # JHopkinsDScourse3Week4
 
-READ.ME explaining the analysis in 'run_analysis.R'
-The CourseraJohn Hopkins Data Science course 03
-Author: Abdelaziz A
-Date:   02-06-2017
+READ.ME explaining the analysis in 'run_analysis.R' 
+The CourseraJohn Hopkins Data Science course 03 
+Author: Abdelaziz A 
+Date:   02-06-2017 
 Note: A description of the variables in 'run_analysis.R' 
-     can be found in 'CodeBook.txt'
+     can be found in 'CodeBook.txt' 
 
 The script in 'run_analysis.R' downloads and unzips accelerometer data
 from "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip". 
