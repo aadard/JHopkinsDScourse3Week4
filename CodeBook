@@ -1,0 +1,110 @@
+# Code book for Week 4 assignment of
+# The Coursera John Hopkins Data Science course 03
+# Author: Abdelaziz A
+# Date:   02-06-2017
+# Note:   variables names are between parentheses
+#         comments and description all start with '#'
+
+
+            
+
+# Url to zipfile
+# ---------------------
+"fileUrl"           # url (character)
+# ---------------------
+
+# Data sets read in from 'X_train.txt' and 'X_test.txt'
+# Added to this are the variables 'activity', 'activitylabel' 
+# and 'subjectlabel'.
+# ---------------------
+"testSet"           # testing set (Data Frame)
+"trainSet"          # training set (Data Frame)
+# ---------------------
+
+
+# Complete data set obtained by using rbind() on 'testSet'
+# and 'trainSet'. # Added to this are the variables 
+# 'activity', 'activitylabel' and 'subjectlabel'.  
+# ---------------------
+"completeSet"       # merged data set (Data Frame)
+# ---------------------
+
+
+# Data on activity labels read in from 'y_test.txt'
+# and 'y_train.txt'. Labels are the activities done 
+# by the subjects during the experiment, indicated by
+# a number.
+# ---------------------
+"testLabels"        # activity labels for testing set (Data Frame)
+"trainLabels"       # activity labels for training set (Data Frame)
+# ---------------------
+
+
+# Data on subject labels read in from 'subject_test.txt'
+# and 'subject_train.txt'. Labels indicate which subject
+# was wearing the reading instrument.
+# ---------------------
+"testSubject"       # subjects for testing set  (Data Frame)
+"trainSubject"      # subjects for training set (Data Frame)
+# ---------------------
+
+  
+# Data on columns in the testing and training set. This variable
+# contains the 'tidy' names of these columns. 'UniqueChar' used
+# to determine which special characters to remove using 'gsub()'.
+# ---------------------
+"features"          # variable names of data sets (Data Frame)
+"uniqueChar"        # contains unique characters used in features (character)
+# ---------------------
+
+
+# Contains look-up table for activities. The numbers of the activities
+# along with the activity.
+# ---------------------
+"activities"        # activities for data sets (Data Frame)
+# ---------------------
+
+
+# Contains the extracted measurements on mean and standard deviationd (std). 
+# ---------------------
+"meanVariables"     # Column indices with measurements on mean (integer)
+"meanData"          # Measurments on mean (Data Frame)
+"stdVariables"      # Column indices with measurements on std (integer)
+"stdData"           # Measurments on std (Data Frame)
+# ---------------------
+
+
+# Contains complete data set split to activities performed by
+# subject. Subsequently, mean of variables is calculated. 
+# ---------------------
+"activitySet"        # Complete data set split according to activity (List)
+"activityMean"       # Mean of variables of variable 'activitySet' (List)
+# ---------------------
+
+
+# Contains complete data set split to subjects whu performed
+# the activities. Subsequently, mean of variables is calculated. 
+# ---------------------
+"subjectSet"        # Complete data set split according to subject (List)
+"subjectMean"       # Mean of variables of variable 'subjectSet' (List)
+# ---------------------
+
+
+# Tidy Data Set
+# ---------------------
+"datTemp1"        # Temporary variable. Data from 'activityMean'(Data Frame)
+"datTemp2"        # Temporary variable. Data from 'subjectMean' (Data Frame)
+"tidyDataMean"    # Tidy Data set from 'activityMean' and 'subjectMean'  (Data Frame)
+# ---------------------
+  
+   
+ 
+
+     
+
+      
+
+   
+  
+     
+
