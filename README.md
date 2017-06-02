@@ -35,8 +35,9 @@ Next, the actual activities are added to the complete data set using a look-up t
 
 Using grep("mean",names(completeSet)) the indices for the columns containing measurements on the mean are found. These are extracted and stored in a new data frame. The same is done for measurements on the standard deviation.
 
-Using the split() function the complete data set is split according to the activity. The mean is then calculated for each variable for each activity.
+Using grep("mean",names(completeSet)) the indices for the columns containing measurements on the mean are found. These are extracted and stored in a new data frame. The same is done for measurements on the standard deviation. These two data frames are added together using cbind() to obtain the data frame 'meanStdData'.
 
-Again, using the split() function the complete data set is now split according for each subject. The mean is then calculated for each variable for each subject.
+Using the split() function the 'meanStdData' data set is split according to the activity and subject. The mean is then calculated for each variable and stored in a list.
 
-Finally, a tidy set is written to a text file 'tidyDataSetMean.txt' containing the mean of the variables for each subject and activity. The corresponding activity or subject can be found in the name of the column.
+The list obtained above is used to obtain a tidy data set. This tidy data set is then written out using write.table().
+
