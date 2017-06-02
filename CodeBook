@@ -93,7 +93,7 @@
 # Tidy Data Set
 # ---------------------
 "datTemp1"        # Temporary variable. Data from 'activityMean'(Data Frame)
-"datTemp2"        # Temporary variable. Data from 'subjectMean' (Data Frame)
+"datTemp2"        # Temporary variable. Data from 'subjectMean' (Data Frame) 
 "tidyDataMean"    # Tidy Data set from 'activityMean' and 'subjectMean'  (Data Frame)
 # ---------------------
   
