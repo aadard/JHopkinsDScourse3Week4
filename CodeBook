@@ -71,40 +71,19 @@
 "meanData"          # Measurments on mean (Data Frame)
 "stdVariables"      # Column indices with measurements on std (integer)
 "stdData"           # Measurments on std (Data Frame)
+"meanStdData"       # meanData and stdData combined with cbind()
 # ---------------------
 
 
-# Contains complete data set split to activities performed by
-# subject. Subsequently, mean of variables is calculated. 
+# Contains 'meanStdData' data set set split to subjects and activities.
+# Subsequently, mean of variables is calculated. 
 # ---------------------
-"activitySet"        # Complete data set split according to activity (List)
-"activityMean"       # Mean of variables of variable 'activitySet' (List)
-# ---------------------
-
-
-# Contains complete data set split to subjects whu performed
-# the activities. Subsequently, mean of variables is calculated. 
-# ---------------------
-"subjectSet"        # Complete data set split according to subject (List)
-"subjectMean"       # Mean of variables of variable 'subjectSet' (List)
+"splitData"         # split data (List)
+"splitDataMean"     # split data with mean of observations (List)
 # ---------------------
 
 
 # Tidy Data Set
 # ---------------------
-"datTemp1"        # Temporary variable. Data from 'activityMean'(Data Frame)
-"datTemp2"        # Temporary variable. Data from 'subjectMean' (Data Frame) 
-"tidyDataMean"    # Tidy Data set from 'activityMean' and 'subjectMean'  (Data Frame)
+"tidyDataDF"        # Tidy Data extracted from 'splitDataMean'  (Data Frame)
 # ---------------------
-  
-   
- 
-
-     
-
-      
-
-   
-  
-     
-
